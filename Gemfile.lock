@@ -1,0 +1,31 @@
+GEM
+  remote: http://rubygems.org/
+  specs:
+    addressable (2.7.0)
+      public_suffix (>= 2.0.2, < 5.0)
+    mini_portile2 (2.5.0)
+    minitest (5.14.3)
+    naughty_or_nice (2.1.2)
+      addressable (~> 2.3)
+      public_suffix (>= 3.0)
+    nokogiri (1.11.1)
+      mini_portile2 (~> 2.5.0)
+      racc (~> 1.4)
+    public_suffix (4.0.6)
+    racc (1.5.2)
+    rake (13.0.3)
+    rdoc (6.3.0)
+
+PLATFORMS
+  ruby
+
+DEPENDENCIES
+  minitest (~> 5.14)
+  naughty_or_nice (~> 2.1)
+  nokogiri (~> 1.11)
+  public_suffix
+  rake
+  rdoc
+
+BUNDLED WITH
+   2.1.4
