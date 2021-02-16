@@ -49,18 +49,25 @@ Rake::RDocTask.new do |rdoc|
   rdoc.rdoc_files.include('lib/**/*.rb')
 end
 
-task :add, :sld, :tld, :name do |t, args|
-  file_path = "#{File.expand_path(__FILE__+'/..')}/lib/domains/#{args.tld}/#{args.sld}"
+task :help do
+  puts "rake add -tld 'top-domain' -sld 'school domain' -name 'school-name'"
+  puts "example:"
+  puts "@aacps.org: rake 'add[Anne Arundel County Public Schools, aacps, org]'"
+  puts "@cut.ac.zw: rake 'add[Chinhoyi University of Technology, cut, zw/ac]'"
+end
+
+task :add, [:name, :sld, :tld] do |task, args|
+  file_path = "#{File.expand_path(__FILE__+'/..')}/lib/domains/#{args[:tld]}/#{args[:sld]}.txt"
   if File.exists?(file_path)
     puts "already exists"
   elsif
     begin
       FileUtils.mkdir_p(File.dirname(file_path))
       File.open( file_path, "w" ) do |contents|
-        contents.print args.name
+        contents.print args[:name] + "\n"
       end
       `git add #{file_path}`
-      `git commit -m "Add #{args.name}"`
+      `git commit -m "Add #{args[:name]}"`
       puts "commit successful"
     rescue
       puts "commit failed"
